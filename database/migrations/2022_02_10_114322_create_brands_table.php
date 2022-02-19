@@ -19,7 +19,7 @@ class CreateBrandsTable extends Migration
             $table->string('name');
             $table->string('website');
             $table->string('logo');
-            $table->decimal('score', 1)->default(4.0);
+            $table->decimal('score', 2, 1)->default(4.0);
             $table->string('description')->nullable();
             $table->unsignedBigInteger('country_id');
             $table->unsignedBigInteger('seller_id');
