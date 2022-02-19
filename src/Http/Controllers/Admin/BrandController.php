@@ -11,4 +11,29 @@ class BrandController extends AdminController
     {
 
     }
+
+    private function table(Request $request)
+    {
+
+    }
+
+    public function show(Request $request, $id)
+    {
+
+    }
+
+    public function edit(Request $request, $id)
+    {
+
+    }
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+    public function destroy(Request $request, $id)
+    {
+
+    }
 }
