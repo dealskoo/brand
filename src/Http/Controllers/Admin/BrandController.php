@@ -88,7 +88,7 @@ class BrandController extends AdminController
     {
         abort_if(!$request->user()->canDo('brands.edit'), 403);
         $brand = Brand::query()->findOrFail($id);
-        return view('brand::admin.brand.show', ['brand' => $brand]);
+        return view('brand::admin.brand.edit', ['brand' => $brand]);
     }
 
     public function update(Request $request, $id)
