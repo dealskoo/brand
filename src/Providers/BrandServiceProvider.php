@@ -53,6 +53,6 @@ class BrandServiceProvider extends ServiceProvider
         PermissionManager::add(new Permission('brands.edit', 'Edit Brand'), 'brands.index');
         PermissionManager::add(new Permission('brands.destroy', 'Destroy Brand'), 'brands.index');
 
-        SellerMenu::route('admin.brands.index', 'brand::brand.brands', [], ['icon' => 'uil-medal me-1'])->order(4);
+        SellerMenu::route('seller.brands.index', 'brand::brand.brands', [], ['icon' => 'uil-medal me-1'])->order(8);
     }
 }
