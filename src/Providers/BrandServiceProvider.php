@@ -5,6 +5,7 @@ namespace Dealskoo\Brand\Providers;
 use Dealskoo\Admin\Facades\AdminMenu;
 use Dealskoo\Admin\Facades\PermissionManager;
 use Dealskoo\Admin\Permission;
+use Dealskoo\Seller\Facades\SellerMenu;
 use Illuminate\Support\ServiceProvider;
 
 class BrandServiceProvider extends ServiceProvider
@@ -51,5 +52,7 @@ class BrandServiceProvider extends ServiceProvider
         PermissionManager::add(new Permission('brands.show', 'View Brand'), 'brands.index');
         PermissionManager::add(new Permission('brands.edit', 'Edit Brand'), 'brands.index');
         PermissionManager::add(new Permission('brands.destroy', 'Destroy Brand'), 'brands.index');
+
+        SellerMenu::route('admin.brands.index', 'brand::brand.brands', [], ['icon' => 'uil-medal me-1'])->order(4);
     }
 }

@@ -15,4 +15,5 @@ return [
     'action' => 'Action',
     'edit_brand' => 'Edit Brand',
     'view_brand' => 'View Brand',
+    'brand_management' => 'Brand Management'
 ];
