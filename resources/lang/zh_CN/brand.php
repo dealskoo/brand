@@ -17,5 +17,8 @@ return [
     'view_brand' => '查看品牌',
     'brand_management' => '品牌管理',
     'add_brand' => '添加品牌',
-    'description' => '简介'
+    'description' => '简介',
+    'name_placeholder' => '填写名称',
+    'website_placeholder' => '填写网站',
+    'description_placeholder' => '填写描述'
 ];

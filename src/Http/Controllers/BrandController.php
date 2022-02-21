@@ -37,8 +37,6 @@ class BrandController extends SellerController
         $count = $query->count();
         $brands = $query->skip($start)->take($limit)->get();
         $rows = [];
-        $can_edit = true;
-        $can_destroy = true;
         foreach ($brands as $brand) {
             $row = [];
             $row[] = $brand->id;
@@ -77,7 +75,23 @@ class BrandController extends SellerController
 
     public function store(Request $request)
     {
-
+        $request->validate([
+            'logo' => ['required', 'image'],
+            'name' => ['required'],
+            'website' => ['required'],
+        ]);
+        $brand = new Brand($request->only(['name', 'website', 'description']));
+        $image = $request->file('logo');
+        $seller = $request->user();
+        $brand->seller_id = $seller->id;
+        $brand->country_id = $seller->country->id;
+        $brand->logo = '1';
+        $brand->save();
+        $filename = $brand->id . '.' . $image->guessExtension();
+        $path = $image->storeAs('brands', $filename);
+        $brand->logo = $path;
+        $brand->save();
+        return redirect(route('seller.brands.index'));
     }
 
     public function edit(Request $request, $id)
@@ -88,7 +102,28 @@ class BrandController extends SellerController
 
     public function update(Request $request, $id)
     {
+        if ($request->has('logo')) {
+            $request->validate([
+                'logo' => ['required', 'image'],
+                'name' => ['required'],
+                'website' => ['required'],
+            ]);
+        } else {
+            $request->validate([
+                'name' => ['required'],
+                'website' => ['required'],
+            ]);
+        }
         $brand = Brand::where('seller_id', $request->user()->id)->findOrFail($id);
+        $brand->fill($request->only(['name', 'website', 'description']));
+        if ($request->has('logo')) {
+            $image = $request->file('logo');
+            $filename = $brand->id . '.' . $image->guessExtension();
+            $path = $image->storeAs('brands', $filename);
+            $brand->logo = $path;
+        }
+        $brand->save();
+        return redirect(route('seller.brands.index'));
     }
 
     public function destroy(Request $request, $id)

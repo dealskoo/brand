@@ -17,5 +17,8 @@ return [
     'view_brand' => 'View Brand',
     'brand_management' => 'Brand Management',
     'add_brand' => 'Add Brand',
-    'description' => 'Description'
+    'description' => 'Description',
+    'name_placeholder' => 'Enter a name',
+    'website_placeholder' => 'Enter a website',
+    'description_placeholder' => 'Enter a description'
 ];
