@@ -94,13 +94,8 @@ class BrandController extends AdminController
     public function update(Request $request, $id)
     {
         abort_if(!$request->user()->canDo('brands.edit'), 403);
-        $request->validate([
-            'approved' => ['required', 'boolean'],
-        ]);
         $brand = Brand::query()->findOrFail($id);
-        $brand->fill($request->only([
-            'approved',
-        ]));
+        $brand->approved = $request->boolean('approved', false);
         $brand->save();
         return back()->with('success', __('admin::admin.update_success'));
     }

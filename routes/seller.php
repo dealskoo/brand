@@ -11,7 +11,7 @@ Route::middleware(['web', 'seller_locale'])->prefix(config('seller.route.prefix'
 
     Route::middleware(['auth:seller', 'verified:seller.verification.notice', 'seller_active'])->group(function () {
 
-        Route::resource('brands', BrandController::class);
+        Route::resource('brands', BrandController::class)->except(['show']);
 
         Route::middleware(['password.confirm:seller.password.confirm'])->group(function () {
 

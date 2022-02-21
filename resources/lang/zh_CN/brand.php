@@ -15,5 +15,6 @@ return [
     'action' => '操作',
     'edit_brand' => '编辑品牌',
     'view_brand' => '查看品牌',
-    'brand_management' => '品牌管理'
+    'brand_management' => '品牌管理',
+    'add_brand' => '添加品牌'
 ];
