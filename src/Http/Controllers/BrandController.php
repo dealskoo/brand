@@ -85,7 +85,6 @@ class BrandController extends SellerController
         $seller = $request->user();
         $brand->seller_id = $seller->id;
         $brand->country_id = $seller->country->id;
-        $brand->logo = '1';
         $brand->save();
         $filename = $brand->id . '.' . $image->guessExtension();
         $path = $image->storeAs('brands', $filename);
