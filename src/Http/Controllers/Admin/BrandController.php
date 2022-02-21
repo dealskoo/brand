@@ -4,6 +4,7 @@ namespace Dealskoo\Brand\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
+use Dealskoo\Admin\Rules\Slug;
 use Dealskoo\Brand\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -94,7 +95,17 @@ class BrandController extends AdminController
     public function update(Request $request, $id)
     {
         abort_if(!$request->user()->canDo('brands.edit'), 403);
+        $request->validate([
+            'slug' => ['required', new Slug('brands', 'slug', $id, 'id')],
+            'website' => ['required'],
+            'score' => ['required', 'digits_between:0,' . config('brand.max_score')],
+        ]);
         $brand = Brand::query()->findOrFail($id);
+        $brand->fill($request->only([
+            'slug',
+            'website',
+            'score'
+        ]));
         $brand->approved = $request->boolean('approved', false);
         $brand->save();
         return back()->with('success', __('admin::admin.update_success'));

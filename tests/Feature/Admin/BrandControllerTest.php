@@ -49,6 +49,9 @@ class BrandControllerTest extends TestCase
         $brand = Brand::factory()->create();
         $brand1 = Brand::factory()->make();
         $response = $this->actingAs($admin, 'admin')->put(route('admin.brands.update', $brand), $brand1->only([
+            'slug',
+            'website',
+            'score',
             'approved',
         ]));
         $response->assertStatus(302);

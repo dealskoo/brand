@@ -47,8 +47,8 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="slug" class="form-label">{{ __('brand::brand.slug') }}</label>
-                                    <input type="text" class="form-control" id="slug" name="slug"
-                                           value="{{ old('slug',$brand->slug) }}" readonly>
+                                    <input type="text" class="form-control" id="slug" name="slug" tabindex="1"
+                                           @if($brand->slug) readonly @endif value="{{ old('slug',$brand->slug) }}">
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -56,8 +56,8 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="website" class="form-label">{{ __('brand::brand.website') }}</label>
-                                    <input type="text" class="form-control" id="website" name="website"
-                                           value="{{ old('website',$brand->website) }}" readonly>
+                                    <input type="text" class="form-control" id="website" name="website" tabindex="2"
+                                           value="{{ old('website',$brand->website) }}">
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -65,8 +65,8 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label for="score" class="form-label">{{ __('brand::brand.score') }}</label>
-                                    <input type="number" class="form-control" id="score" name="score"
-                                           value="{{ old('score',$brand->score) }}" readonly>
+                                    <input type="number" class="form-control" id="score" name="score" tabindex="3"
+                                           value="{{ old('score',$brand->score) }}">
                                 </div>
                             </div>
                         </div> <!-- end row -->
@@ -95,7 +95,7 @@
                                 <div class="mb-3">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="approved" name="approved"
-                                               tabindex="1"
+                                               tabindex="4"
                                                value="1" {{ $brand->approved?'checked':'' }}>
                                         <label for="approved"
                                                class="form-check-label">{{ __('brand::brand.approved') }}</label>
@@ -104,7 +104,7 @@
                             </div>
                         </div> <!-- end row -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-success mt-2" tabindex="2"><i
+                            <button type="submit" class="btn btn-success mt-2" tabindex="5"><i
                                     class="mdi mdi-content-save"></i> {{ __('admin::admin.save') }}
                             </button>
                         </div>
