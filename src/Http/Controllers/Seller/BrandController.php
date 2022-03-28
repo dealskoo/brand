@@ -75,21 +75,32 @@ class BrandController extends SellerController
 
     public function store(Request $request)
     {
-        $request->validate([
-            'logo' => ['required', 'image'],
-            'name' => ['required'],
-            'website' => ['required'],
-        ]);
+        if ($request->hasFile('logo')) {
+            $request->validate([
+                'logo' => ['required', 'image'],
+                'name' => ['required'],
+                'website' => ['required'],
+            ]);
+        } else {
+            $request->validate([
+                'name' => ['required'],
+                'website' => ['required'],
+            ]);
+        }
+
         $brand = new Brand($request->only(['name', 'website', 'description']));
-        $image = $request->file('logo');
         $seller = $request->user();
         $brand->seller_id = $seller->id;
         $brand->country_id = $seller->country->id;
         $brand->save();
-        $filename = $brand->id . '.' . $image->guessExtension();
-        $path = $image->storeAs('brands', $filename);
-        $brand->logo = $path;
-        $brand->save();
+
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $filename = $brand->id . '.' . $image->guessExtension();
+            $path = $image->storeAs('brands', $filename);
+            $brand->logo = $path;
+            $brand->save();
+        }
         return redirect(route('seller.brands.index'));
     }
 
@@ -101,7 +112,7 @@ class BrandController extends SellerController
 
     public function update(Request $request, $id)
     {
-        if ($request->has('logo')) {
+        if ($request->hasFile('logo')) {
             $request->validate([
                 'logo' => ['required', 'image'],
                 'name' => ['required'],
@@ -115,7 +126,7 @@ class BrandController extends SellerController
         }
         $brand = Brand::where('seller_id', $request->user()->id)->findOrFail($id);
         $brand->fill($request->only(['name', 'website', 'description']));
-        if ($request->has('logo')) {
+        if ($request->hasFile('logo')) {
             $image = $request->file('logo');
             $filename = $brand->id . '.' . $image->guessExtension();
             $path = $image->storeAs('brands', $filename);
