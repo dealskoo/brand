@@ -138,6 +138,6 @@ class BrandController extends SellerController
 
     public function destroy(Request $request, $id)
     {
-        return ['status' => Brand::where('seller_id', $request->user()->id)->where('approved', false)->delete($id)];
+        return ['status' => Brand::where('seller_id', $request->user()->id)->where('approved', false)->where('id', $id)->delete()];
     }
 }
