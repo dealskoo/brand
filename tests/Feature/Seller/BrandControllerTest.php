@@ -1,6 +1,6 @@
 <?php
 
-namespace Dealskoo\Brand\Tests\Feature;
+namespace Dealskoo\Brand\Tests\Feature\Seller;
 
 use Dealskoo\Brand\Models\Brand;
 use Dealskoo\Brand\Tests\TestCase;

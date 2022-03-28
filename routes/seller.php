@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Dealskoo\Brand\Http\Controllers\BrandController;
+use Dealskoo\Brand\Http\Controllers\Seller\BrandController;
 
 Route::middleware(['web', 'seller_locale'])->prefix(config('seller.route.prefix'))->name('seller.')->group(function () {
 
