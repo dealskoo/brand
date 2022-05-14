@@ -38,4 +38,12 @@ class BrandTest extends TestCase
         $brand = Brand::factory()->create();
         $this->assertNotNull($brand->seller);
     }
+
+    public function test_approved()
+    {
+        $count = 2;
+        Brand::factory()->create();
+        Brand::factory()->count($count)->approved()->create();
+        $this->assertEquals($count, Brand::approved()->count());
+    }
 }

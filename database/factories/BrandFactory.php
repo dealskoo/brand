@@ -32,8 +32,16 @@ class BrandFactory extends Factory
             'score' => $this->faker->numberBetween(0, 5),
             'description' => $this->faker->text,
             'country_id' => $seller->country_id,
-            'seller_id' => $seller->id,
-            'approved' => $this->faker->boolean
+            'seller_id' => $seller->id
         ];
+    }
+
+    public function approved()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'approved' => true,
+            ];
+        });
     }
 }
