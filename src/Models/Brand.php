@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Scout\Searchable;
 
 class Brand extends Model
 {
-    use HasFactory, SoftDeletes, HasCountry, HasSlug, HasSeller;
+    use HasFactory, SoftDeletes, HasCountry, HasSlug, HasSeller, Searchable;
 
     protected $appends = ['logo_url'];
 
@@ -41,5 +42,23 @@ class Brand extends Model
     public function scopeApproved(Builder $builder)
     {
         return $builder->where('approved', true);
+    }
+
+    public function shouldBeSearchable()
+    {
+        return $this->approved;
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->only([
+            'slug',
+            'name',
+            'website',
+            'score',
+            'description',
+            'country_id',
+            'seller_id'
+        ]);
     }
 }
