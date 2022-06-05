@@ -98,7 +98,7 @@ class BrandController extends AdminController
         $request->validate([
             'slug' => ['required', new Slug('brands', 'slug', $id, 'id')],
             'website' => ['required'],
-            'score' => ['required', 'digits_between:0,' . config('brand.max_score')],
+            'score' => ['required', 'numeric', 'between:0,' . config('brand.max_score')],
         ]);
         $brand = Brand::query()->findOrFail($id);
         $brand->fill($request->only([
