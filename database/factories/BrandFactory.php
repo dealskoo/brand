@@ -25,7 +25,7 @@ class BrandFactory extends Factory
         return [
             'slug' => $this->faker->unique()->slug,
             'name' => $this->faker->name,
-            'website' => $this->faker->url,
+            'website' => $this->faker->domainName,
             'logo' => $this->faker->imageUrl,
             'score' => $this->faker->numberBetween(0, 5),
             'description' => $this->faker->text,
