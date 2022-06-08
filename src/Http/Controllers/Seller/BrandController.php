@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Brand\Http\Controllers\Seller;
 
-use Carbon\Carbon;
 use Dealskoo\Brand\Models\Brand;
 use Dealskoo\Seller\Http\Controllers\Controller as SellerController;
 use Illuminate\Http\Request;
@@ -46,8 +45,8 @@ class BrandController extends SellerController
             $row[] = $brand->score;
             $row[] = $brand->country->name;
             $row[] = $brand->approved;
-            $row[] = Carbon::parse($brand->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $brand->created_at->format('Y-m-d H:i:s');
+            $row[] = $brand->updated_at->format('Y-m-d H:i:s');
 
             $edit_link = '';
             if (!$brand->approved) {

@@ -2,7 +2,6 @@
 
 namespace Dealskoo\Brand\Http\Controllers\Admin;
 
-use Carbon\Carbon;
 use Dealskoo\Admin\Http\Controllers\Controller as AdminController;
 use Dealskoo\Admin\Rules\Slug;
 use Dealskoo\Brand\Models\Brand;
@@ -52,8 +51,8 @@ class BrandController extends AdminController
             $row[] = $brand->country->name;
             $row[] = '<a href="' . route('admin.sellers.show', $brand->seller) . '">' . $brand->seller->name . '</a>';
             $row[] = $brand->approved;
-            $row[] = Carbon::parse($brand->created_at)->format('Y-m-d H:i:s');
-            $row[] = Carbon::parse($brand->updated_at)->format('Y-m-d H:i:s');
+            $row[] = $brand->created_at->format('Y-m-d H:i:s');
+            $row[] = $brand->updated_at->format('Y-m-d H:i:s');
             $view_link = '';
             if ($can_view) {
                 $view_link = '<a href="' . route('admin.brands.show', $brand) . '" class="action-icon"><i class="mdi mdi-eye"></i></a>';
