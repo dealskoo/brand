@@ -4,6 +4,8 @@ namespace Dealskoo\Brand\Models;
 
 use Dealskoo\Admin\Traits\HasSlug;
 use Dealskoo\Country\Traits\HasCountry;
+use Dealskoo\Follow\Traits\Followable;
+use Dealskoo\Like\Traits\Likeable;
 use Dealskoo\Seller\Traits\HasSeller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +16,7 @@ use Laravel\Scout\Searchable;
 
 class Brand extends Model
 {
-    use HasFactory, SoftDeletes, HasCountry, HasSlug, HasSeller, Searchable;
+    use HasFactory, SoftDeletes, HasCountry, HasSlug, HasSeller, Followable, Likeable, Searchable;
 
     protected $appends = ['logo_url'];
 

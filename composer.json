@@ -43,6 +43,8 @@
         "dealskoo/admin": "dev-master",
         "dealskoo/billing": "dev-master",
         "dealskoo/country": "dev-master",
+        "dealskoo/follow": "dev-master",
+        "dealskoo/like": "dev-master",
         "dealskoo/seller": "dev-master",
         "laravel/framework": ">=7.20",
         "laravel/scout": "^9.4"
